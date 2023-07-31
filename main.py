@@ -13,7 +13,7 @@ browser = webdriver.Chrome(service=Service(), options=chrome_options)
 base_url = 'https://kr.indeed.com/jobs?q='
 search_term = 'python'
 
-browser.get('https://kr.indeed.com/jobs?q=python&limit=50')
+browser.get(f"{base_url}{search_term}")
 
 soup = BeautifulSoup(browser.page_source, "html.parser")
 job_list = soup.find("ul", class_='jobsearch-ResultsList')
