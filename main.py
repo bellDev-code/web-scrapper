@@ -15,13 +15,19 @@ def get_page_count(keyword):
     browser.get(f"{base_url}{keyword}")
     
     soup = BeautifulSoup(browser.page_source, "html.parser")
-    pagination = soup.find('nav', class_="ecydgvn0")
+    pagination = soup.find("nav", class_="ecydgvn0")
     if pagination == None:
         return 1
-    pages = pagination.find_all('div', recursive=False)
-    print(len(pages))
-
-get_page_count("nest")
+    else:
+        pages = pagination.find_all("div", recursive = False)
+        count = len(pages)
+    if count >= 5:
+        return 5
+    else:
+        return count
+    
+print(get_page_count("python"))
+print(get_page_count("ruby"))
 
 def extract_indeed_jobs(keyword):
     base_url = 'https://kr.indeed.com/jobs?q='
